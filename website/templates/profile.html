@@ -1,0 +1,45 @@
+{%  extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="Row">
+
+    <!-- Full-width images with number text -->
+    <div class="Column">
+        <img src="../../static/images/whiskey5.jpg" class="img-fluid p-5" alt="" style="width:100%">
+    </div>
+
+    <div class="Column">
+        <img src="../../static/images/whiskey6.jpg" class="img-fluid p-5" alt="" style="width:100%">
+    </div>
+
+    <div class="Column">
+        <img src="../../static/images/whiskey7.jpg" class="img-fluid p-5" alt="" style="width:100%">
+    </div>
+      
+</div>
+
+<div class="wish_list">
+    <h1 class="wl">Whiskey Wish List</h1>
+    <ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">
+        {{ note.data }}
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+        <span aria-hidden="true">&otimes;</span>
+        </button>
+        <button type="button" class="close" onClick="editNote({{ note.id }})">
+        <span aria-hidden="true">&oplus;</span>
+        </button>
+    </li>
+    {% endfor %}
+    </ul>
+    <form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+    </form>
+</div>
+{% endblock %}
